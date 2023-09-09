@@ -55,7 +55,7 @@ class Bot {
     }
 
     /**
-     * @param {String} input chat yang diberikan Wser ke Bot
+     * @param {String} input chat yang diberikan user ke Bot
      * @returns {String} output/response dari bot berdasar properti this.template
      */
     getResponse(input) {
