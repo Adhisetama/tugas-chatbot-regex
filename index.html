@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container"></div>
+    <textarea name="input" id="input" cols="30" rows="10"></textarea>
+    
+    <script src="Bot.js"></script>
+    <script>
+        const Eliza = new Bot()
+        for (e of regex_matches) {
+            const [template, response] = e
+            Eliza.addTemplate(template, response)
+        }
+
+        const container = document.getElementById("container")
+        const input = document.getElementById("input")
+        input.addEventListener("keydown", e => {
+            if (e.key === "Enter") {
+                const userInput = input.value
+                input.value = ""
+
+                e.preventDefault()
+
+                const userChatBubble = document.createElement('p')
+                userChatBubble.innerText = "User: " + userInput
+
+                const botChatBubble = document.createElement('p')
+                botChatBubble.innerText = "Eliza: " + Eliza.getResponse(userInput)
+
+                container.appendChild(userChatBubble)
+                container.appendChild(botChatBubble)
+            }
+        })
+    </script>
+</body>
+</html>
